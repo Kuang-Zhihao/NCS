@@ -1,10 +1,5 @@
 package model;
 
-enum Action{
-	DELIVERED,
-	CANCELLED
-}
-
 public class Order {
 	
 	private String username;

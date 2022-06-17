@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -262,6 +263,15 @@ public class Midterm1 implements IOrderService {
 	@Override
 	public boolean generatePDFReports() {
 		
+		Map<String, Integer> actionCount = new HashMap<String,Integer >();
+		for (Order order: orders) {
+			if (!actionCount.containsKey(order.getAction())){
+				actionCount.put(order.getAction(),0);						
+			} else {
+				actionCount.put(order.getAction(),actionCount.get(order.getAction()) + 1);			
+			}
+		}		
+		
 		PDDocument document = new PDDocument();
 		PDPage page = new PDPage();
 		document.addPage( page );
@@ -273,8 +283,8 @@ public class Midterm1 implements IOrderService {
 			contentStream.setFont( font, 12 );
 			contentStream.beginText();
 			contentStream.newLineAtOffset( 100, 700 );
-			for (Order order:orders) {
-				contentStream.showText(order.toString().replace("\n", ""));
+			for (Map.Entry<String, Integer> entry : actionCount.entrySet()) {
+				contentStream.showText(entry.getKey() + ": " + entry.getValue());
 				contentStream.newLine();
 			}
 			contentStream.endText();
