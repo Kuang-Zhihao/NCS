@@ -1,0 +1,23 @@
+class Account{
+	int accountNumber;
+   	String accountHolderName;
+	int balance;
+	String branchName;
+
+	public void setBranchName(String name)
+	{
+		branchName = name;
+	}
+
+	public int getAccountNumber()
+	{
+		return accountNumber;
+	}
+
+	public String getAccountName()
+	{
+		return accountHolderName;
+	}
+
+
+}
